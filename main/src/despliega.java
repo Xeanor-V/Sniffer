@@ -1,3 +1,11 @@
+
+import javax.swing.JFrame;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +18,23 @@
  */
 public class despliega extends javax.swing.JFrame {
 
+    JFreeChart Grafica;
+    DefaultCategoryDataset Datos = new DefaultCategoryDataset();
     /**
      * Creates new form despliega
      */
     public despliega() {
         initComponents();
+        Datos.addValue(1, "Negocio 1", "Lunes");
+        Datos.addValue(2, "Negocio 1", "Martes");
+        Datos.addValue(3, "Negocio 1", "Miércoles");
+        Datos.addValue(4, "Negocio 1", "Jueves");
+        Datos.addValue(5, "Negocio 1", "Viernes");
+        Datos.addValue(6, "Negocio 1", "Sábado");
+        Datos.addValue(7, "Negocio 1", "Domingo");
+        
+        Grafica = ChartFactory.createBarChart("Visitas diarias","Días", "Visitas", Datos, PlotOrientation.VERTICAL, true, true, false);
+
     }
     
     public despliega(int deviceSelected,Captura3 captura, int numpac,int time, int snp, String expresion, int netmask, int a) {
@@ -36,6 +56,19 @@ public class despliega extends javax.swing.JFrame {
         else
             System.out.println("No Optimizado");
         captura.startDevice(deviceSelected, captura,numpac, time, snp, expresion, netmask, a);
+        
+        Datos.addValue(1, "Negocio 1", "Lunes");
+        Datos.addValue(2, "Negocio 1", "Martes");
+        Datos.addValue(3, "Negocio 1", "Miércoles");
+        Datos.addValue(4, "Negocio 1", "Jueves");
+        Datos.addValue(5, "Negocio 1", "Viernes");
+        Datos.addValue(6, "Negocio 1", "Sábado");
+        Datos.addValue(7, "Negocio 1", "Domingo");
+        
+        Grafica = ChartFactory.createBarChart("Visitas diarias","Días", "Visitas", Datos, PlotOrientation.VERTICAL, true, true, false);
+
+        
+        
     }
     
         
@@ -119,7 +152,15 @@ public class despliega extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        ChartPanel Panel = new ChartPanel(Grafica);
+        JFrame Ventana = new JFrame("JFreeChart");
+        Ventana.getContentPane().add(Panel);
+        Ventana.pack();
+        Ventana.setVisible(true);
+        Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+            // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

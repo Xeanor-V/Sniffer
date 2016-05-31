@@ -1,3 +1,11 @@
+
+import javax.swing.JFrame;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +17,30 @@
  * @author Emilio
  */
 public class lol extends javax.swing.JFrame {
-
+    
+    JFreeChart Grafica;
+    DefaultCategoryDataset Datos = new DefaultCategoryDataset();
     /**
      * Creates new form lol
      */
     public lol() {
-        initComponents();
+        //initComponents();
+        Datos.addValue(1, "Negocio 1", "Lunes");
+        Datos.addValue(2, "Negocio 1", "Martes");
+        Datos.addValue(3, "Negocio 1", "Miércoles");
+        Datos.addValue(4, "Negocio 1", "Jueves");
+        Datos.addValue(5, "Negocio 1", "Viernes");
+        Datos.addValue(6, "Negocio 1", "Sábado");
+        Datos.addValue(7, "Negocio 1", "Domingo");
+        
+        Grafica = ChartFactory.createBarChart("Visitas diarias","Días", "Visitas", Datos, PlotOrientation.VERTICAL, true, true, false);
+
+        ChartPanel Panel = new ChartPanel(Grafica);
+        JFrame Ventana = new JFrame("JFreeChart");
+        Ventana.getContentPane().add(Panel);
+        Ventana.pack();
+        Ventana.setVisible(true);
+        Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
