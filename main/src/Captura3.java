@@ -115,7 +115,7 @@ public class Captura3 {
 
     }
     
-    public void startDevice(int deviceSelected,Captura3 captura, int numpac,int time, int snp, String expression, int netmask, int optimize) {
+    public int[] startDevice(int deviceSelected,Captura3 captura, int numpac,int time, int snp, String expression, int netmask, int optimize) {
         Scanner in = new Scanner(System.in);
         globales();
         PcapIf device = alldevs.get(deviceSelected); // We know we have atleast 1 device
@@ -146,7 +146,7 @@ public class Captura3 {
         if (pcap == null) {
             System.err.printf("Error while opening device for capture: "
                     + errbuf.toString());
-            return;
+            //return -1;
         }//if
 
         /**
@@ -184,7 +184,10 @@ public class Captura3 {
         System.out.println("\t\tEncabezados UDP: " + enc_udp);
         System.out.println("\t\tEncabezados desconocidos: " + enc_desconocido);   
         System.out.println("\tPaquetes desconocidos: " + pac_desconocido); 
-        System.out.println("\tEl numero filtrado es: " + numerofiltrado); 
+        System.out.println("\tEl numero filtrado es: " + numerofiltrado);
+        int numero[] = {numpac, ieee802, mensaje_arp, paquete_ip, enc_tcp, enc_icmp, enc_udp, enc_desconocido, pac_desconocido};
+        
+        return numero;
     }
     
     PcapPacketHandler<String> jpacketHandler = new PcapPacketHandler<String>() {

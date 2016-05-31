@@ -55,20 +55,19 @@ public class despliega extends javax.swing.JFrame {
             System.out.println("Optimizado");
         else
             System.out.println("No Optimizado");
-        captura.startDevice(deviceSelected, captura,numpac, time, snp, expresion, netmask, a);
+        int numero[] = captura.startDevice(deviceSelected, captura, numpac, time, snp, expresion, netmask, a);
         
-        Datos.addValue(1, "Negocio 1", "Lunes");
-        Datos.addValue(2, "Negocio 1", "Martes");
-        Datos.addValue(3, "Negocio 1", "Miércoles");
-        Datos.addValue(4, "Negocio 1", "Jueves");
-        Datos.addValue(5, "Negocio 1", "Viernes");
-        Datos.addValue(6, "Negocio 1", "Sábado");
-        Datos.addValue(7, "Negocio 1", "Domingo");
+        Datos.addValue(numero[1], "Tipo de paquete", "IEEE802");
+        Datos.addValue(numero[2], "Tipo de paquete", "Mensaje ARP");
+        Datos.addValue(numero[3], "Tipo de paquete", "Paquete IP");
+        Datos.addValue(numero[4], "Tipo de paquete", "TCP");
+        Datos.addValue(numero[5], "Tipo de paquete", "ICMP");
+        Datos.addValue(numero[6], "Tipo de paquete", "UDP");
+        Datos.addValue(numero[7], "Tipo de paquete", "Encabezado desconocido");
+        Datos.addValue(numero[8], "Tipo de paquete", "Paquete desconocido");
         
-        Grafica = ChartFactory.createBarChart("Visitas diarias","Días", "Visitas", Datos, PlotOrientation.VERTICAL, true, true, false);
-
-        
-        
+        Grafica = ChartFactory.createBarChart("Paquetes por tipo (Recividos "+ numero[0] + ")","Paquetes", "Número de paquetes", Datos, PlotOrientation.VERTICAL, true, true, false);
+ 
     }
     
         
@@ -157,6 +156,7 @@ public class despliega extends javax.swing.JFrame {
         JFrame Ventana = new JFrame("JFreeChart");
         Ventana.getContentPane().add(Panel);
         Ventana.pack();
+        Ventana.setSize(800, 450);
         Ventana.setVisible(true);
         Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        
